@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="fanwall.css" rel = "stylesheet"/>
+	</head>
+	<body>
+		<div class = "row">
+			<div onclick = "highlight('optionOne', 0)" id = "optionOne" class = "optionBlock col-md-8">
+				<a> Here is the lowest plan you can get. It is 9.99 for 1 month </a>
+			</div>	
+			<div onclick = "highlight('optionOne', 0)" id = "clickOne" class= "col-md-4 text-center"> 
+					<a> 3 gb </a>
+			</div>
+			<div onclick = "highlight('optionTwo', 1)" id = "optionTwo" class = "optionBlock col-md-8">
+				<a> Here is the middle plan. It is 9.99 for 3 months. </a>
+			</div>
+			<div onclick = "highlight('optionTwo', 1)" id = "clickTwo" class = "col-md-4 text-center"> 
+					<a> 3 gb </a>
+			</div>
+			<div onclick = "highlight('optionThree', 2)" id = "optionThree" class = "optionBlock col-md-8">
+				<a> Here is the highest plan you can get. It is 9.99 for 5 month </a>
+			</div>
+			<div onclick = "highlight('optionThree', 2)" id = "clickThree" class= "col-md-4 text-center"> 
+					<a> 3 gb </a>
+			</div>
+			<div onclick = "submit()" id = "submit" class = "col-md-12 text-center">
+					<a> submit! </a>
+			</div>
+		</div>
+		<script>
+			var _payVal = -1; //how to make secure?
+
+			function highlight(selectDiv, elementIndex) {
+				var element;
+				if (elementIndex == 0){
+					element = "clickOne";
+				}
+				else if (elementIndex == 1){
+					element = "clickTwo";
+				}
+				else if (elementIndex == 2){
+					element = "clickThree";
+				}
+				var option = document.getElementById(element);
+				var selector = document.getElementById(selectDiv);
+	    		if (option.style.backgroundColor == "white") {
+	    			option.style.backgroundColor = "blue";
+	    			selector.style.border = "thick solid blue";
+	    			_payVal = elementIndex;
+	    			unselectElements(elementIndex);
+	    		}
+	    		else {
+	    			option.style.backgroundColor = "white";
+	    			selector.style.border = "white";
+	    			elementIndex = -1;
+	    			_payVal = -1;
+	    			unselectElements(elementIndex);
+	    		}
+	    	}
+	    	function unselectElements(elementIndex) {
+	    		for (i = 0; i <= 2; i++) {
+	    			if (i != elementIndex) {
+	    				if (i == 0) {
+	    					document.getElementById("clickOne").style.backgroundColor = "white";
+	    					document.getElementById("optionOne").style.border = "solid black .2px";
+
+	    				}
+	    				if (i == 1) {
+	    					document.getElementById("clickTwo").style.backgroundColor = "white";
+	    					document.getElementById("optionTwo").style.border = "solid black .2px";
+
+	    				}
+	    				if (i == 2) {
+	    					document.getElementById("clickThree").style.backgroundColor = "white";
+	    					document.getElementById("optionThree").style.border = "solid black .2px";
+
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	function submit() {
+	    		//verify transaction
+	    		if (_payVal >= 0 && _payVal < 3) {
+	    			//submit
+	    			//connect with Parse
+	    		}
+	    		else {
+	    			alert("please select a plan");
+	    		}
+	    	}
+    	</script>
+	</body>
+</html>
